@@ -1,17 +1,12 @@
 import p5 from 'p5'
+import { beehive, block, boat, loaf, tub } from '../shapes/still_lifes'
+import { Cell } from '../types/types'
+import { offsetCell, offsetShape } from '../util/shapeUtils'
+const CELL_SIZE = 10
 
-interface Cell {
-  x: number
-  y: number
-}
 const cellMap: Map<string, boolean> = new Map()
-const isCell = (x: number, y: number): boolean =>
-  cellMap.get(`${x},${y}`) || false
 const makeCell = ({x,y}: Cell): void => {
   cellMap.set(`${x},${y}`, true)
-}
-const killCell = ({x,y}: Cell): void => {
-  cellMap.delete(`${x},${y}`)
 }
 const neighbors = ({x, y}: Cell): Cell[] => {
   const neighbors: Cell[] = []
@@ -28,17 +23,22 @@ const keyToCell = (key: string): Cell => {
   return {x,y}
 }
 
-for (let i = 0; i < 100; i++) {
-  for (let j = 0; j < 100; j++) {
-    if (Math.random() > 0.5) makeCell({x: i, y: j})
-  }
-}
+[ block,
+  beehive,
+  loaf,
+  boat,
+  tub,
+].map((shape, i) => offsetShape(shape, {x: i * 10, y: i * 10}))
+.flat()
+.forEach(makeCell)
+
+
 
 const draw = (p: p5) => {
   p.background(200)
   const cells = Array.from(cellMap.keys()).map(keyToCell)
   cells.forEach(({x,y}) => {
-    p.rect(x * 10, y * 10, 10, 10)
+    p.rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
   })
   const currentNeighbors = cells.map(neighbors).flat().reduce((acc, {x,y}) => {
     acc.set(`${x},${y}`, (acc.get(`${x},${y}`) || 0) + 1)
