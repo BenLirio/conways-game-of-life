@@ -1,5 +1,7 @@
 import p5 from 'p5'
 import draw from './hooks/draw'
+import { mouseMoved } from './hooks/mouseMoved'
+import { mousePressed } from './hooks/mousePresses'
 import setup from './hooks/setup'
 import windowResized from './hooks/windowResized'
 import './index.css'
@@ -10,6 +12,8 @@ window.addEventListener('DOMContentLoaded', () => {
     p.setup = () => setup(p)
     p.draw = () => draw(p)
     p.windowResized = () => windowResized(p)
+    p.mouseMoved = () => mouseMoved(p)
+    p.mousePressed = () => mousePressed(p)
 
   }, p5Div)
 })
