@@ -1,5 +1,7 @@
 import { stillLifes } from '../shapes/still_lifes'
 import { getPatternSelector } from '../state/elements'
+import { getHeight, getWidth } from '../state/globals'
+import { CELL_SIZE } from '../state/state'
 import { Cell, Shape } from '../types/types'
 
 export const offsetShape = (shape: Shape, offset: Cell): Shape =>
@@ -9,3 +11,9 @@ export const offsetCell = (offset: Cell) => (cell: Cell): Cell =>
 
 export const getSelectedShape = (): Shape =>
   stillLifes[getPatternSelector().selected()] as Shape
+
+export const inBounds = (cell: Cell): boolean =>
+  cell.x >= 0 &&
+  cell.y >= 0 &&
+  cell.x < getWidth()/CELL_SIZE &&
+  cell.y < getHeight()/CELL_SIZE

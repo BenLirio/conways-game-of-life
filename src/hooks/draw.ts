@@ -3,7 +3,7 @@ import { stillLifes } from '../shapes/still_lifes'
 import { getPatternSelector } from '../state/elements'
 import { CELL_SIZE, getCells, mouseCell, update } from '../state/state'
 import { Shape } from '../types/types'
-import { getSelectedShape, offsetCell } from '../util/shapeUtils'
+import { getSelectedShape, inBounds, offsetCell } from '../util/shapeUtils'
 
 const drawGrid = (p: p5) => {
   p.push()
@@ -33,11 +33,12 @@ const drawMouseCell = (p: p5) => {
   p.push()
   p.noStroke()
   p.fill(p.color(0,0,0,75))
-  getSelectedShape()
-    .map(offsetCell(mouseCell))
-    .forEach(({x,y}) =>
+  const cells = getSelectedShape().map(offsetCell(mouseCell))
+  if (cells.every(inBounds)) {
+    cells.forEach(({x,y}) =>
       p.rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
     )
+  }
   p.pop()
 }
 

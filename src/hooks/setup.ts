@@ -1,11 +1,14 @@
 import p5 from 'p5'
 import { stillLifes } from '../shapes/still_lifes'
 import { getPatternSelector, setPatternSelector } from '../state/elements'
+import { setHeight, setWidth } from '../state/globals'
 import { getLargestSize } from '../util/screenSize'
 
 const setup = (p: p5) => {
   p.frameRate(20)
   const { width, height } = getLargestSize(p)
+  setWidth(width)
+  setHeight(height)
   const canvas = p.createCanvas(width, height)
   canvas.style('display', 'block')
   canvas.style('border', '3px solid black')
