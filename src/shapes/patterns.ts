@@ -65,6 +65,45 @@ ooxooooxoo
 xxoxxxxoxx
 ooxooooxoo`)
 
+const glider = newShape(`
+oxo
+oox
+xxx`)
+
+const lightWeightSpaceship = newShape(`
+oxoox
+x
+xooox
+xxxx`)
+
+const middleWeightSpaceship = newShape(`
+ooox
+oxooox
+x
+xoooox
+xxxxx`)
+
+const heavyWeightSpaceship = newShape(`
+oooxx
+oxoooox
+x
+xooooox
+xxxxxx`)
+
+const gosperGliderGun = newShape(`
+ooooooooooooooooooooooooox
+oooooooooooooooooooooooxox
+oooooooooooooxxooooooxxooooooooooooxx
+ooooooooooooxoooxooooxxooooooooooooxx
+oxxooooooooxoooooxoooxxooo
+oxxooooooooxoooxoxxooooxox
+oooooooooooxoooooxooooooox
+ooooooooooooxoooxooooooooo
+oooooooooooooxxooooooooooo
+`)
+
+
+
 export const stillLifes = {
   block,
   beehive,
@@ -80,7 +119,20 @@ export const oscillators = {
   pulsar,
   pentaDecathlon,
 }
+export const spaceships = {
+  glider,
+  lightWeightSpaceship,
+  middleWeightSpaceship,
+  heavyWeightSpaceship,
+}
+
+export const guns = {
+  gosperGliderGun,
+}
+
 export const patterns = {
   ...stillLifes,
   ...oscillators,
+  ...spaceships,
+  ...guns
 }
