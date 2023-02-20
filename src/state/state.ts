@@ -1,6 +1,4 @@
-import { stillLifes } from '../shapes/still_lifes'
 import { Cell } from '../types/types'
-import { offsetShape } from '../util/shapeUtils'
 export const CELL_SIZE = 16
 export const cellMap: Map<string, boolean> = new Map()
 export const mouseCell: Cell = {x: 10, y: 5}

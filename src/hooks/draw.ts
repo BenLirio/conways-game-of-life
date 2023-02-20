@@ -1,8 +1,5 @@
 import p5 from 'p5'
-import { stillLifes } from '../shapes/still_lifes'
-import { getPatternSelector } from '../state/elements'
 import { CELL_SIZE, getCells, mouseCell, update } from '../state/state'
-import { Shape } from '../types/types'
 import { getSelectedShape, inBounds, offsetCell } from '../util/shapeUtils'
 
 const drawGrid = (p: p5) => {
