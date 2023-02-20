@@ -1,31 +1,38 @@
 import { newShape } from './shape'
 
-export const block = newShape(`
+const block = newShape(`
 xx
 xx
 `)
 
-export const beehive = newShape(`
+const beehive = newShape(`
 oxxo
 xoox
 oxxo
 `)
 
-export const loaf = newShape(`
+const loaf = newShape(`
 oxxo
 xoox
 oxox
 ooxo
 `)
 
-export const boat = newShape(`
+const boat = newShape(`
 xx
 xox
 ox
 `)
 
-export const tub = newShape(`
+const tub = newShape(`
 oxo
 xox
 oxo
 `)
+export const stillLifes = {
+  block,
+  beehive,
+  loaf,
+  boat,
+  tub,
+}

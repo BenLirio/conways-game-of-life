@@ -1,5 +1,9 @@
 import p5 from 'p5'
+import { stillLifes } from '../shapes/still_lifes'
+import { getPatternSelector } from '../state/elements'
 import { CELL_SIZE, getCells, mouseCell, update } from '../state/state'
+import { Shape } from '../types/types'
+import { getSelectedShape, offsetCell } from '../util/shapeUtils'
 
 const drawGrid = (p: p5) => {
   p.push()
@@ -27,10 +31,13 @@ const drawCells = (p: p5) => {
 
 const drawMouseCell = (p: p5) => {
   p.push()
-  const {x,y} = mouseCell
   p.noStroke()
   p.fill(p.color(0,0,0,75))
-  p.rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
+  getSelectedShape()
+    .map(offsetCell(mouseCell))
+    .forEach(({x,y}) =>
+      p.rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
+    )
   p.pop()
 }
 

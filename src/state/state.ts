@@ -1,4 +1,4 @@
-import { beehive, block, boat, loaf, tub } from '../shapes/still_lifes'
+import { stillLifes } from '../shapes/still_lifes'
 import { Cell } from '../types/types'
 import { offsetShape } from '../util/shapeUtils'
 export const CELL_SIZE = 16
@@ -22,15 +22,6 @@ export const keyToCell = (key: string): Cell => {
   const [x,y] = key.split(',').map(Number)
   return {x,y}
 }
-
-[ block,
-  beehive,
-  loaf,
-  boat,
-  tub,
-].map((shape, i) => offsetShape(shape, {x: i * 10, y: i * 10}))
-.flat()
-.forEach(makeCell)
 
 export const update = () => {
   const cells = getCells()
