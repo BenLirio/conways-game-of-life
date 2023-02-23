@@ -1,7 +1,8 @@
 import p5 from 'p5'
 import { patterns, stillLifes } from '../shapes/patterns'
-import { getPatternSelector, setPatternSelector } from '../state/elements'
+import { getPatternSelector, getToolSelector, setPatternSelector, setToolSelector } from '../state/elements'
 import { setHeight, setWidth } from '../state/globals'
+import { Tool } from '../types/types'
 import { getLargestSize } from '../util/screenSize'
 
 const setup = (p: p5) => {
@@ -14,6 +15,9 @@ const setup = (p: p5) => {
   canvas.style('border', '3px solid black')
   setPatternSelector(p.createSelect())
   Object.keys(patterns).map(key => getPatternSelector().option(key))
+
+  setToolSelector(p.createSelect())
+  Object.values(Tool).map(tool => getToolSelector().option(tool))
 }
 
 export default setup

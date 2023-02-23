@@ -1,13 +1,13 @@
-import { Cell } from '../types/types'
+import { IPos } from '../types/types'
 export const CELL_SIZE = 16
 export const cellMap: Map<string, boolean> = new Map()
-export const mouseCell: Cell = {x: 10, y: 5}
+export const mouseCell: IPos = {x: 10, y: 5}
 
-const makeCell = ({x,y}: Cell): void => {
+const makeCell = ({x,y}: IPos): void => {
   cellMap.set(`${x},${y}`, true)
 }
-const neighbors = ({x, y}: Cell): Cell[] => {
-  const neighbors: Cell[] = []
+const neighbors = ({x, y}: IPos): IPos[] => {
+  const neighbors: IPos[] = []
   for (let i = -1; i <= 1; i++) {
     for (let j = -1; j <= 1; j++) {
       if (i === 0 && j === 0) continue
@@ -16,7 +16,7 @@ const neighbors = ({x, y}: Cell): Cell[] => {
   }
   return neighbors
 }
-export const keyToCell = (key: string): Cell => {
+export const keyToCell = (key: string): IPos => {
   const [x,y] = key.split(',').map(Number)
   return {x,y}
 }
@@ -36,5 +36,5 @@ export const update = () => {
   })
 }
 
-export const getCells = (): Cell[] =>
+export const getCells = (): IPos[] =>
   Array.from(cellMap.keys()).map(keyToCell)

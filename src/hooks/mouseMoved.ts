@@ -1,9 +1,11 @@
 import p5 from 'p5'
+import { getPosOffset } from '../state/globals'
 import { CELL_SIZE, mouseCell } from '../state/state'
 
 export const mouseMoved = (p: p5) => {
-  const x = (p.mouseX) / CELL_SIZE
-  const y = (p.mouseY) / CELL_SIZE
+  const offset = getPosOffset()
+  const x = (p.mouseX + offset.x) / CELL_SIZE
+  const y = (p.mouseY + offset.y) / CELL_SIZE
   mouseCell.x = Math.floor(x)
   mouseCell.y = Math.floor(y)
 }
