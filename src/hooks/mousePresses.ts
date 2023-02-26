@@ -3,7 +3,7 @@ import { getToolSelector } from '../state/elements'
 import { setMouseDown, setPanning } from '../state/globals'
 import { cellMap, mouseCell } from '../state/state'
 import { Tool } from '../types/types'
-import { getSelectedShape, inBounds, offsetCell } from '../util/shapeUtils'
+import { getSelectedShape, offsetCell } from '../util/shapeUtils'
 
 const placeShape = (p: p5) => {
   console.log('place shape')

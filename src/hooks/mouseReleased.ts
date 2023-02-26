@@ -2,9 +2,11 @@ import p5 from 'p5'
 import { getToolSelector } from '../state/elements'
 import { getMouseDown, setPanning, setPosOffset } from '../state/globals'
 import { Tool } from '../types/types'
+import { mouseInBounds } from '../util/bounds'
 
 const endPan = (p: p5) => {
   setPanning(false)
+  if (!mouseInBounds(p)) return
   const {x, y} = getMouseDown()
   const dx = x - p.mouseX
   const dy = y - p.mouseY
