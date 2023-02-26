@@ -3,6 +3,7 @@ import draw from './hooks/draw'
 import { mouseMoved } from './hooks/mouseMoved'
 import { mousePressed } from './hooks/mousePresses'
 import { mouseReleased } from './hooks/mouseReleased'
+import { mouseWheel } from './hooks/mouseWheel'
 import setup from './hooks/setup'
 import windowResized from './hooks/windowResized'
 import './index.css'
@@ -17,6 +18,7 @@ window.addEventListener('DOMContentLoaded', () => {
     p.mouseMoved = () => mouseMoved(p)
     p.mousePressed = () => mousePressed(p)
     p.mouseReleased = () => mouseReleased(p)
+    p.mouseWheel = (event) => mouseWheel(p, event)
 
   }, p5Div)
 })

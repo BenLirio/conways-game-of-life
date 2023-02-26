@@ -1,6 +1,6 @@
 import { patterns } from '../shapes/patterns'
 import { getPatternSelector } from '../state/elements'
-import { getHeight, getWidth } from '../state/globals'
+import { getHeight, getScale, getWidth } from '../state/globals'
 import { CELL_SIZE } from '../state/state'
 import { IPos, Shape } from '../types/types'
 
@@ -15,5 +15,5 @@ export const getSelectedShape = (): Shape =>
 export const inBounds = (cell: IPos): boolean =>
   cell.x >= 0 &&
   cell.y >= 0 &&
-  cell.x < getWidth()/CELL_SIZE &&
-  cell.y < getHeight()/CELL_SIZE
+  cell.x < getWidth()/(getScale()*CELL_SIZE) &&
+  cell.y < getHeight()/(getScale()*CELL_SIZE)

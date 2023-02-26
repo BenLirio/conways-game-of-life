@@ -3,9 +3,6 @@ export const CELL_SIZE = 16
 export const cellMap: Map<string, boolean> = new Map()
 export const mouseCell: IPos = {x: 10, y: 5}
 
-const makeCell = ({x,y}: IPos): void => {
-  cellMap.set(`${x},${y}`, true)
-}
 const neighbors = ({x, y}: IPos): IPos[] => {
   const neighbors: IPos[] = []
   for (let i = -1; i <= 1; i++) {

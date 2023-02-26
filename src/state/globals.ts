@@ -1,4 +1,4 @@
-import { IVec2, Tool } from '../types/types'
+import { IVec2 } from '../types/types'
 
 let width: number
 export const getWidth = () => width
@@ -19,3 +19,7 @@ export const getPanning = () => panning
 let posOffset: IVec2 = {x: 0, y: 0}
 export const setPosOffset = (f: (pos: IVec2) => IVec2) => posOffset = f(posOffset)
 export const getPosOffset = () => posOffset
+
+let scale = 1
+export const setScale = (f: (scale: number) => number) => scale = f(scale)
+export const getScale = () => scale
