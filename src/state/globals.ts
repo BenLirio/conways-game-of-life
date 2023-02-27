@@ -1,4 +1,6 @@
 import { IVec2 } from '../types/types'
+import { setDefaultCursor, setGrabbingCursor, setGrabCursor, setPointerCursor } from '../util/styles'
+import { Tool } from '../types/types'
 
 let width: number
 export const getWidth = () => width
@@ -13,7 +15,11 @@ export const setMouseDown = (pos: IVec2) => mouseDown = pos
 export const getMouseDown = () => mouseDown
 
 let panning: boolean
-export const setPanning = (p: boolean) => panning = p
+export const setPanning = (p: boolean) => {
+  if (p) setGrabbingCursor()
+  else setGrabCursor()
+  panning = p
+}
 export const getPanning = () => panning
 
 let posOffset: IVec2 = {x: 0, y: 0}
@@ -23,3 +29,19 @@ export const getPosOffset = () => posOffset
 let scale = 1
 export const setScale = (f: (scale: number) => number) => scale = f(scale)
 export const getScale = () => scale
+
+let tool: Tool
+export const setTool = (t: Tool) => {
+  switch (t) {
+    case Tool.Pan:
+      setGrabCursor()
+      break
+    case Tool.PlaceShape:
+      setPointerCursor()
+      break
+    default:
+      console.error('Unknown tool')
+  }
+  tool = t
+}
+export const getTool = () => tool

@@ -15,3 +15,11 @@ body {
   margin-top: auto;
   padding-bottom: 8px;
 }
+.selector {
+  margin: 8px;
+  font: 16px "Century Gothic", Futura, sans-serif;
+}
+option {
+  padding: 8px;
+  font: 16px "Century Gothic", Futura, sans-serif;
+}

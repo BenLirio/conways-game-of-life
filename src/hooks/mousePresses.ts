@@ -1,6 +1,5 @@
 import p5 from 'p5'
-import { getToolSelector } from '../state/elements'
-import { setMouseDown, setPanning } from '../state/globals'
+import { getTool, setMouseDown, setPanning } from '../state/globals'
 import { cellMap, mouseCell } from '../state/state'
 import { Tool } from '../types/types'
 import { getSelectedShape, offsetCell } from '../util/shapeUtils'
@@ -24,7 +23,7 @@ const beginPan = (p: p5) => {
 }
 
 export const mousePressed = (p: p5) => {
-  switch (getToolSelector().selected()) {
+  switch (getTool()) {
     case Tool.Pan:
       beginPan(p)
       break

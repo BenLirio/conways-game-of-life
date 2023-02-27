@@ -1,6 +1,5 @@
 import p5 from 'p5'
-import { getToolSelector } from '../state/elements'
-import { getMouseDown, setPanning, setPosOffset } from '../state/globals'
+import { getMouseDown, getTool, setPanning, setPosOffset } from '../state/globals'
 import { Tool } from '../types/types'
 import { mouseInBounds } from '../util/bounds'
 
@@ -15,7 +14,7 @@ const endPan = (p: p5) => {
 
 
 export const mouseReleased = (p: p5) => {
-  switch (getToolSelector().selected()) {
+  switch (getTool()) {
     case Tool.Pan:
       endPan(p)
       break
