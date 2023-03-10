@@ -131,6 +131,7 @@ export const guns = {
 }
 
 export const patterns = {
+  cell: newShape('x'),
   ...stillLifes,
   ...oscillators,
   ...spaceships,

@@ -1,6 +1,16 @@
 import { IVec2 } from '../types/types'
-import { setDefaultCursor, setGrabbingCursor, setGrabCursor, setPointerCursor } from '../util/styles'
+import { setGrabbingCursor, setGrabCursor, setPointerCursor } from '../util/styles'
 import { Tool } from '../types/types'
+import { ZOOMED_OUT } from './config'
+import { getPlayButton } from './elements'
+
+let paused: boolean
+export const isPaused = () => paused
+export const togglePause = () => {
+  paused = !paused
+  getPlayButton().html(paused ? 'Play' : 'Pause')
+}
+
 
 let width: number
 export const getWidth = () => width
@@ -45,3 +55,5 @@ export const setTool = (t: Tool) => {
   tool = t
 }
 export const getTool = () => tool
+
+export const isZoomedOut = () => getScale() < ZOOMED_OUT

@@ -1,12 +1,13 @@
 import p5 from 'p5'
 import { getToolSelector } from '../state/elements'
-import { getMouseDown, getPanning, getPosOffset, getScale } from '../state/globals'
+import { getHeight, getMouseDown, getPanning, getPosOffset, getScale, getWidth, isPaused, isZoomedOut } from '../state/globals'
 import { CELL_SIZE, getCells, mouseCell, update } from '../state/state'
 import { Tool } from '../types/types'
-import { getSelectedShape, inBounds, offsetCell } from '../util/shapeUtils'
+import { getSelectedShape, offsetCell } from '../util/shapeUtils'
+import { inContext } from '../util/wrappers'
 
-const drawGrid = (p: p5) => {
-  p.push()
+const drawGrid = inContext((p: p5) => {
+  if (isZoomedOut()) return
   p.strokeWeight(1)
   p.stroke(p.color(255,255,255,75))
   const offset = {...getPosOffset()}
@@ -20,22 +21,19 @@ const drawGrid = (p: p5) => {
   for (let y = offset.y-(offset.y%(getScale()*CELL_SIZE)); y < offset.y + p.height; y += getScale()*CELL_SIZE) {
     p.line(offset.x, y, offset.x + p.width, y)
   }
-  p.pop()
-}
+})
 
-const drawCells = (p: p5) => {
-  p.push()
+const drawCells = inContext((p: p5) => {
   p.stroke('white')
   p.strokeWeight(1)
   p.fill('black')
+  if (isPaused()) p.fill(p.color(0,0,0,75))
   getCells().forEach(({x,y}) => {
     p.rect(x * getScale()*CELL_SIZE, y * getScale()*CELL_SIZE, getScale()*CELL_SIZE, getScale()*CELL_SIZE)
   })
-  p.pop()
-}
+})
 
-const drawMouseCell = (p: p5) => {
-  p.push()
+const drawMouseCell = inContext((p: p5) => {
   p.noStroke()
   p.fill(p.color(0,0,0,75))
   const cells = getSelectedShape().map(offsetCell(mouseCell))
@@ -44,8 +42,7 @@ const drawMouseCell = (p: p5) => {
       p.rect(x * getScale()*CELL_SIZE, y * getScale()*CELL_SIZE, getScale()*CELL_SIZE, getScale()*CELL_SIZE)
     )
   }
-  p.pop()
-}
+})
 
 const drawOffset = (p: p5) => {
   p.translate(-getPosOffset().x, -getPosOffset().y)
@@ -67,6 +64,7 @@ const draw = (p: p5) => {
   if (getToolSelector().selected() === Tool.PlaceShape) {
     drawMouseCell(p)
   }
+  if (isPaused()) return
   update()
 }
 

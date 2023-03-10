@@ -23,3 +23,10 @@ option {
   padding: 8px;
   font: 16px "Century Gothic", Futura, sans-serif;
 }
+button {
+  display: block;
+  margin: auto;
+  margin-top: 8px;
+  padding: 16px;
+  width: 80%;
+}

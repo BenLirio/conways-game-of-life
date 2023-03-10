@@ -1,0 +1,1 @@
+export const ZOOMED_OUT = 0.5
